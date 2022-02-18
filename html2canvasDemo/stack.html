@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Stacking and float</title>
+  <script src="./index.js"></script>
+  <style>
+    .h2c {
+      position: fixed;
+      bottom: 100px;
+      right: 100px;
+      padding: 20px;
+      background: #41b983;
+      z-index: 999;
+    }
+
+    .h2c-show {
+      position: fixed;
+      z-index: 999;
+      top: 0;
+      right: 0;
+      height: 100vh;
+      width: 100vw;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      overflow: auto;
+    }
+
+    .h2c-show canvas {
+      transform: scale(0.8);
+    }
+
+    .h2c-show img {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      cursor: pointer;
+    }
+  </style>
+  <style type="text/css">
+    div {
+      font: 12px Arial;
+    }
+
+    span.bold {
+      font-weight: bold;
+    }
+
+    #absdiv1 {
+      position: absolute;
+      width: 150px;
+      height: 200px;
+      top: 10px;
+      right: 120px;
+      border: 1px dashed #990000;
+      background-color: #ffdddd;
+      text-align: center;
+      z-index: 0;
+    }
+
+    #absdiv1_absdiv1 {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      top: 0px;
+      right: 120px;
+      border: 1px dashed #009900;
+      background-color: #ccffcc;
+      text-align: center;
+      z-index: 2;
+    }
+
+    #normdiv {
+      /* opacity: 0.7; */
+      height: 100px;
+      border: 1px dashed #999966;
+      background-color: #ffffcc;
+      margin: 0px 10px 0px 10px;
+      text-align: left;
+    }
+
+    #flodiv1 {
+      margin: 0px 10px 0px 20px;
+      float: left;
+      width: 150px;
+      height: 200px;
+      border: 1px dashed #009900;
+      background-color: #ccffcc;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    #flodiv2 {
+      margin: 0px 20px 0px 10px;
+      float: right;
+      width: 150px;
+      height: 200px;
+      border: 1px dashed #009900;
+      background-color: #ccffcc;
+      text-align: center;
+    }
+
+    #absdiv2 {
+      position: absolute;
+      width: 150px;
+      height: 100px;
+      top: 30px;
+      right: 140px;
+      border: 1px dashed #990000;
+      background-color: #ffdddd;
+      text-align: center;
+      z-index: 0;
+    }
+
+    #absdiv2_absdiv1 {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      top: 10px;
+      right: 140px;
+      border: 1px dashed #999966;
+      background-color: #ffffcc;
+      text-align: center;
+      z-index: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="h2c" data-html2canvas-ignore>
+    <button onclick="h2cShoot()">截图</button>
+    <div class="h2c-show">
+      <img onclick="h2cCloseShoot()"
+        src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjZmZmZmZmIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0xOSA2LjQxTDE3LjU5IDUgMTIgMTAuNTkgNi40MSA1IDUgNi40MSAxMC41OSAxMiA1IDE3LjU5IDYuNDEgMTkgMTIgMTMuNDEgMTcuNTkgMTkgMTkgMTcuNTkgMTMuNDEgMTJ6Ii8+CiAgICA8cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+Cjwvc3ZnPgo="
+        alt="Close" class="css-1htfbdm">
+    </div>
+  </div>
+  <br /><br />
+  normal text
+
+  <div id="flodiv1">
+    <span style="background: #009900;">float text; float text; float text; float text;</span>
+    <br /><span class="bold">DIV #2</span>
+    <br />float: left;
+  </div>
+
+  <div id="flodiv2">
+    <br /><span class="bold">DIV #3</span>
+    <br />float: right;
+  </div>
+
+  <br />
+
+  <div id="normdiv">
+    <br /><span class="bold">DIV #4</span>
+    <br />no positioning
+  </div>
+</body>
+<script>
+  function h2cShoot() {
+    document.querySelector('.h2c-show').style.display = 'block';
+    window.html2canvas(document.body).then(function (canvas) {
+      document.querySelector('.h2c-show').appendChild(canvas);
+    });
+  }
+
+  function h2cCloseShoot() {
+    document.querySelector('.h2c-show').style.display = 'none';
+  }
+</script>
+
+</html>
